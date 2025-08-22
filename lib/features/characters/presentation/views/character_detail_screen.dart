@@ -186,7 +186,7 @@ class _HeroSectionSliver extends StatelessWidget {
       leading: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha:0.3),
           borderRadius: BorderRadius.circular(12),
         ),
         child: IconButton(
@@ -231,7 +231,7 @@ class _HeroSectionSliver extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    Colors.black.withOpacity(0.7),
+                    Colors.black.withValues(alpha:0.7),
                   ],
                 ),
               ),
@@ -289,11 +289,11 @@ class _StatusBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.9),
+        color: color.withValues(alpha:0.9),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha:0.3),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -443,7 +443,7 @@ class _LocationCard extends StatelessWidget {
           colors: [
             AppColors.cardLight,
             AppColors.cardLight,
-            color.withOpacity(0.03),
+            color.withValues(alpha:0.03),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
@@ -457,7 +457,7 @@ class _LocationCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha:0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -517,13 +517,13 @@ class _EpisodesSection extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.primary.withOpacity(0.1),
-                AppColors.secondary.withOpacity(0.1),
+                AppColors.primary.withValues(alpha:0.1),
+                AppColors.secondary.withValues(alpha:0.1),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.primary.withOpacity(0.2),
+              color: AppColors.primary.withValues(alpha:0.2),
               width: 1,
             ),
           ),
@@ -532,7 +532,7 @@ class _EpisodesSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.2),
+                  color: AppColors.primary.withValues(alpha:0.2),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -586,10 +586,10 @@ class _EpisodesSection extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 8),
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
-                    color: AppColors.warning.withOpacity(0.1),
+                    color: AppColors.warning.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: AppColors.warning.withOpacity(0.3),
+                      color: AppColors.warning.withValues(alpha:0.3),
                       width: 1,
                     ),
                   ),
@@ -692,8 +692,8 @@ class _StatCard extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             AppColors.cardLight,
-            AppColors.cardLight.withOpacity(0.95),
-            color.withOpacity(0.05),
+            AppColors.cardLight.withValues(alpha:0.95),
+            color.withValues(alpha:0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
@@ -788,7 +788,7 @@ class _SectionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 8,
-      shadowColor: AppColors.primary.withOpacity(0.1),
+      shadowColor: AppColors.primary.withValues(alpha:0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -816,7 +816,7 @@ class _SectionCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha:0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -887,7 +887,7 @@ class _InfoRowPremium extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
-            color: (iconColor ?? AppColors.primary).withOpacity(0.1),
+            color: (iconColor ?? AppColors.primary).withValues(alpha:0.1),
             borderRadius: BorderRadius.circular(6),
           ),
           child: Icon(

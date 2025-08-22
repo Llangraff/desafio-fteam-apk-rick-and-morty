@@ -176,7 +176,7 @@ class CircularIcon extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppColors.primary.withOpacity(0.1),
+        color: backgroundColor ?? AppColors.primary.withValues(alpha:0.1),
         shape: BoxShape.circle,
       ),
       child: Center(

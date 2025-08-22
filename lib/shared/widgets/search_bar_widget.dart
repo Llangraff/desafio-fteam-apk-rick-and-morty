@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty_app/core/theme/app_colors.dart';
-import 'package:rick_morty_app/core/theme/app_typography.dart';
 
 /// Widget de barra de pesquisa elegante com animações
 class SearchBarWidget extends StatefulWidget {
@@ -100,12 +99,12 @@ class _SearchBarWidgetState extends State<SearchBarWidget>
                 end: Alignment.bottomRight,
                 colors: [
                   AppColors.surface,
-                  AppColors.surface.withOpacity(0.8),
+                  AppColors.surface.withValues(alpha:0.8),
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha:0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                 ),

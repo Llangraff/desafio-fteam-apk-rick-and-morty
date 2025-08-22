@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:transparent_image/transparent_image.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../domain/entities/character.dart';
@@ -80,7 +79,7 @@ class _CharacterCardState extends State<CharacterCard>
           scale: _scaleAnimation.value,
           child: Card(
             elevation: _elevationAnimation.value,
-            shadowColor: AppColors.primary.withOpacity(0.2),
+            shadowColor: AppColors.primary.withValues(alpha:0.2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -90,8 +89,8 @@ class _CharacterCardState extends State<CharacterCard>
               onTapUp: _onTapUp,
               onTapCancel: _onTapCancel,
               borderRadius: BorderRadius.circular(16),
-              splashColor: AppColors.primary.withOpacity(0.1),
-              highlightColor: AppColors.primary.withOpacity(0.05),
+              splashColor: AppColors.primary.withValues(alpha:0.1),
+              highlightColor: AppColors.primary.withValues(alpha:0.05),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -196,12 +195,12 @@ class _StatusChip extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 75), // Largura máxima reduzida 80→75px
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3), // Padding reduzido
       decoration: BoxDecoration(
-        color: statusColor.withOpacity(0.15),
+        color: statusColor.withValues(alpha:0.15),
         borderRadius: BorderRadius.circular(10), // Borda reduzida 12→10px
-        border: Border.all(color: statusColor.withOpacity(0.3), width: 1),
+        border: Border.all(color: statusColor.withValues(alpha:0.3), width: 1),
         boxShadow: [
           BoxShadow(
-            color: statusColor.withOpacity(0.15),
+            color: statusColor.withValues(alpha:0.15),
             blurRadius: 2, // Blur reduzido 3→2px
             offset: const Offset(0, 1),
           ),

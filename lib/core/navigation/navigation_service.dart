@@ -18,7 +18,7 @@ class NavigationService {
   /// [routeName] - Nome da rota registrada
   /// [arguments] - Argumentos opcionais para a rota
   /// 
-  /// Retorna Future<T?> para permitir aguardar resultado da navegação
+  /// Retorna Future\<T?\> para permitir aguardar resultado da navegação
   Future<T?> navigateTo<T extends Object?>(
     String routeName, {
     Object? arguments,

@@ -59,15 +59,13 @@ class DependencyInjection {
       ),
 
       // ViewModels
-      ChangeNotifierProxyProvider4<GetCharactersPageUseCase, GetRandomCharacterUseCase, NavigationService, NotificationService, CharacterListViewModel>(
+      ChangeNotifierProxyProvider2<GetCharactersPageUseCase, GetRandomCharacterUseCase, CharacterListViewModel>(
         create: (context) => CharacterListViewModel(
           Provider.of<GetCharactersPageUseCase>(context, listen: false),
           Provider.of<GetRandomCharacterUseCase>(context, listen: false),
-          Provider.of<NavigationService>(context, listen: false),
-          Provider.of<NotificationService>(context, listen: false),
         ),
-        update: (_, useCase1, useCase2, navigationService, notificationService, previous) =>
-            previous ?? CharacterListViewModel(useCase1, useCase2, navigationService, notificationService),
+        update: (_, useCase1, useCase2, previous) =>
+            previous ?? CharacterListViewModel(useCase1, useCase2),
       ),
 
       ChangeNotifierProxyProvider<GetCharacterByIdUseCase, CharacterDetailViewModel>(

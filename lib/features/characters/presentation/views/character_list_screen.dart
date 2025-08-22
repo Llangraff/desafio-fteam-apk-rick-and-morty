@@ -111,7 +111,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     filled: true,
-                    fillColor: Colors.white.withOpacity(0.9),
+                    fillColor: Colors.white.withValues(alpha:0.9),
                   ),
                   onChanged: (query) {
                     context.read<CharacterListViewModel>().searchCharacters(query);
@@ -127,12 +127,12 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                   
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha:0.9),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: _isFiltersExpanded
-                            ? Colors.blue.withOpacity(0.5)
-                            : Colors.grey.withOpacity(0.3),
+                            ? Colors.blue.withValues(alpha:0.5)
+                            : Colors.grey.withValues(alpha:0.3),
                         width: 1,
                       ),
                     ),
@@ -197,7 +197,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF00ff88).withOpacity(0.3),
+                          color: const Color(0xFF00ff88).withValues(alpha:0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -208,12 +208,14 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: viewModel.isPortalLoading ? null : () async {
+                          // Capture services before async operation
+                          final navigationService = context.read<NavigationService>();
+                          final notificationService = context.read<NotificationService>();
+                          
                           final characterId = await viewModel.openRandomPortal();
                           if (characterId != null && mounted) {
-                            final navigationService = context.read<NavigationService>();
                             navigationService.navigateToCharacterDetail(characterId);
                           } else if (viewModel.portalError != null && mounted) {
-                            final notificationService = context.read<NotificationService>();
                             notificationService.showError(viewModel.portalError!);
                           }
                         },
@@ -310,7 +312,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       icon: const Icon(Icons.clear_all),
                       label: const Text('Limpar Filtros'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.withOpacity(0.8),
+                        backgroundColor: Colors.red.withValues(alpha:0.8),
                         foregroundColor: Colors.white,
                       ),
                     ),

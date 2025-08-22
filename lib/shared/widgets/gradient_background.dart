@@ -104,7 +104,7 @@ class _AnimatedGradientBackgroundState extends State<AnimatedGradientBackground>
               colors: widget.colors.map((color) {
                 return Color.lerp(
                   color,
-                  color.withOpacity(0.7),
+                  color.withValues(alpha:0.7),
                   _animation.value,
                 )!;
               }).toList(),
@@ -164,14 +164,14 @@ class GlassmorphismCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        color: AppColors.surface.withOpacity(opacity),
+        color: AppColors.surface.withValues(alpha:opacity),
         border: Border.all(
-          color: AppColors.secondary.withOpacity(0.3),
+          color: AppColors.secondary.withValues(alpha:0.3),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.secondary.withOpacity(0.2),
+            color: AppColors.secondary.withValues(alpha:0.2),
             blurRadius: blur,
             offset: const Offset(0, 4),
           ),
@@ -264,11 +264,11 @@ class _ParticleBackgroundState extends State<ParticleBackground>
                   width: 4,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: widget.particleColor.withOpacity(0.6),
+                    color: widget.particleColor.withValues(alpha:0.6),
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: widget.particleColor.withOpacity(0.3),
+                        color: widget.particleColor.withValues(alpha:0.3),
                         blurRadius: 3,
                         spreadRadius: 1,
                       ),
@@ -307,7 +307,7 @@ class WaveBackground extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                waveColor.withOpacity(0.1),
+                waveColor.withValues(alpha:0.1),
                 AppColors.background,
               ],
             ),
@@ -337,7 +337,7 @@ class WavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = color.withOpacity(0.3)
+      ..color = color.withValues(alpha:0.3)
       ..style = PaintingStyle.fill;
 
     final path = Path();

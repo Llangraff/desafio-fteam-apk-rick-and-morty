@@ -15,7 +15,7 @@ class ShimmerLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: AppColors.shimmer,
-      highlightColor: AppColors.shimmer.withOpacity(0.1),
+      highlightColor: AppColors.shimmer.withValues(alpha:0.1),
       period: const Duration(milliseconds: 1500),
       child: child,
     );
@@ -30,7 +30,7 @@ class CharacterCardShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 8,
-      shadowColor: AppColors.primary.withOpacity(0.2),
+      shadowColor: AppColors.primary.withValues(alpha:0.2),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),

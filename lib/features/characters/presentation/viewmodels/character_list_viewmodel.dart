@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import '../../../../core/network/exceptions.dart';
-import '../../../../core/navigation/navigation_service.dart';
-import '../../../../core/services/notification_service.dart';
 import '../../domain/usecases/get_characters_page_usecase.dart';
 import '../../domain/usecases/get_random_character_usecase.dart';
 import '../../domain/entities/character.dart';
@@ -14,8 +12,6 @@ import 'character_list_state.dart';
 class CharacterListViewModel extends ChangeNotifier {
   final GetCharactersPageUseCase _getCharactersPageUseCase;
   final GetRandomCharacterUseCase _getRandomCharacterUseCase;
-  final NavigationService _navigationService;
-  final NotificationService _notificationService;
   
   /// Status disponíveis na API (oficiais)
   static const List<String> _officialStatuses = [
@@ -100,8 +96,6 @@ class CharacterListViewModel extends ChangeNotifier {
   CharacterListViewModel(
     this._getCharactersPageUseCase,
     this._getRandomCharacterUseCase,
-    this._navigationService,
-    this._notificationService,
   );
 
   /// Getter que retorna os personagens computados (SISTEMA HÍBRIDO)
@@ -279,21 +273,6 @@ class CharacterListViewModel extends ChangeNotifier {
     _triggerHybridFiltering();
   }
 
-  /// Atualiza os personagens filtrados no estado atual
-  void _updateFilteredCharacters() {
-    if (_state is CharacterListLoaded) {
-      final currentState = _state as CharacterListLoaded;
-      _updateState(CharacterListLoaded(
-        characters: computedCharacters,
-        canLoadMore: currentState.canLoadMore,
-        currentPage: currentState.currentPage,
-        totalPages: currentState.totalPages,
-      ));
-    } else if (_state is CharacterListLoadingMore) {
-      final currentState = _state as CharacterListLoadingMore;
-      _updateState(CharacterListLoadingMore(computedCharacters));
-    }
-  }
 
   /// Atualiza filtros de status (SISTEMA HÍBRIDO)
   void updateStatusFilters(List<String> filters) {
@@ -582,7 +561,6 @@ class CharacterListViewModel extends ChangeNotifier {
     }
   }
 
-  @override
   /// Calcula o total de filtros ativos em todas as categorias
   ///
   /// CORREÇÃO MVVM: Move lógica da View para ViewModel
@@ -593,6 +571,7 @@ class CharacterListViewModel extends ChangeNotifier {
            _selectedTypeFilters.length;
   }
 
+  @override
   void dispose() {
     _searchTimer?.cancel();
     _filterTimer?.cancel();

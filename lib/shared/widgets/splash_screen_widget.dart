@@ -96,9 +96,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.primary.withOpacity(_backgroundOpacityAnimation.value),
-                AppColors.secondary.withOpacity(_backgroundOpacityAnimation.value),
-                Colors.black.withOpacity(_backgroundOpacityAnimation.value * 0.8),
+                AppColors.primary.withValues(alpha:_backgroundOpacityAnimation.value),
+                AppColors.secondary.withValues(alpha:_backgroundOpacityAnimation.value),
+                Colors.black.withValues(alpha:_backgroundOpacityAnimation.value * 0.8),
               ],
             ),
           ),
@@ -162,12 +162,12 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           end: Alignment.bottomRight,
           colors: [
             Colors.white,
-            Colors.white.withOpacity(0.8),
+            Colors.white.withValues(alpha:0.8),
           ],
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.5),
+            color: AppColors.primary.withValues(alpha:0.5),
             blurRadius: 30,
             spreadRadius: 5,
           ),
@@ -182,7 +182,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
             fontWeight: FontWeight.bold,
             shadows: [
               Shadow(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha:0.8),
                 blurRadius: 10,
                 offset: const Offset(2, 2),
               ),
@@ -204,7 +204,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
             fontWeight: FontWeight.bold,
             shadows: [
               Shadow(
-                color: AppColors.primary.withOpacity(0.5),
+                color: AppColors.primary.withValues(alpha:0.5),
                 blurRadius: 10,
                 offset: const Offset(1, 1),
               ),
@@ -215,11 +215,11 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
         Text(
           'Personagens',
           style: AppTypography.subtitle1.copyWith(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withValues(alpha:0.9),
             fontSize: 18,
             shadows: [
               Shadow(
-                color: AppColors.secondary.withOpacity(0.5),
+                color: AppColors.secondary.withValues(alpha:0.5),
                 blurRadius: 8,
                 offset: const Offset(1, 1),
               ),
@@ -255,7 +255,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                 height: 4 + (index % 3) * 2.0,
                 decoration: BoxDecoration(
                   color: [AppColors.primary, AppColors.secondary, Colors.white][index % 3]
-                      .withOpacity(0.6),
+                      .withValues(alpha:0.6),
                   shape: BoxShape.circle,
                 ),
               ),

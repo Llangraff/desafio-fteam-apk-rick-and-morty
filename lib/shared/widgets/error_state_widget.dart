@@ -124,7 +124,6 @@ class _ErrorStateWidgetState extends State<ErrorStateWidget>
       case ErrorType.server:
         return _ServerErrorIllustration();
       case ErrorType.general:
-      default:
         return _GeneralErrorIllustration();
     }
   }
@@ -143,7 +142,7 @@ class _ErrorStateWidgetState extends State<ErrorStateWidget>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.3),
+            color: AppColors.primary.withValues(alpha:0.3),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),
@@ -187,7 +186,7 @@ class _GeneralErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.error.withOpacity(0.1),
+        color: AppColors.error.withValues(alpha:0.1),
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -207,7 +206,7 @@ class _NetworkErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.warning.withOpacity(0.1),
+        color: AppColors.warning.withValues(alpha:0.1),
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -227,7 +226,7 @@ class _NotFoundErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.info.withOpacity(0.1),
+        color: AppColors.info.withValues(alpha:0.1),
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -247,7 +246,7 @@ class _ServerErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.error.withOpacity(0.1),
+        color: AppColors.error.withValues(alpha:0.1),
         shape: BoxShape.circle,
       ),
       child: Icon(

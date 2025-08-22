@@ -92,10 +92,10 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              color: AppColors.surface.withOpacity(0.8),
+              color: AppColors.surface.withValues(alpha:0.8),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.border.withOpacity(0.5),
+                color: AppColors.border.withValues(alpha:0.5),
                 width: 1,
               ),
             ),
@@ -143,10 +143,10 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
             child: Container(
               margin: const EdgeInsets.only(top: 8),
               decoration: BoxDecoration(
-                color: AppColors.surface.withOpacity(0.6),
+                color: AppColors.surface.withValues(alpha:0.6),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.border.withOpacity(0.3),
+                  color: AppColors.border.withValues(alpha:0.3),
                   width: 1,
                 ),
               ),
@@ -223,13 +223,13 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
           side: BorderSide(
             color: isSelected
                 ? AppColors.primary
-                : AppColors.border.withOpacity(0.5),
+                : AppColors.border.withValues(alpha:0.5),
             width: 1,
           ),
         ),
         elevation: isSelected ? 4 : 1,
         shadowColor: isSelected
-            ? AppColors.primary.withOpacity(0.3)
+            ? AppColors.primary.withValues(alpha:0.3)
             : Colors.transparent,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,

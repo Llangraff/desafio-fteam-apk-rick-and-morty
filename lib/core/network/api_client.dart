@@ -17,8 +17,6 @@ class ApiClient {
     try {
       final uri = Uri.parse('$_baseUrl$endpoint');
       
-      print('🌐 GET: $uri');
-      
       final response = await _client.get(
         uri,
         headers: _getHeaders(),
@@ -46,8 +44,6 @@ class ApiClient {
 
   /// Trata a resposta HTTP e mapeia erros para exceções customizadas
   Map<String, dynamic> _handleResponse(http.Response response) {
-    print('📡 Response [${response.statusCode}]: ${response.body}');
-
     switch (response.statusCode) {
       case 200:
       case 201:

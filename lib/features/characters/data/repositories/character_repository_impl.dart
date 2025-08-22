@@ -1,4 +1,3 @@
-import 'dart:math';
 import '../../domain/entities/character.dart';
 import '../../domain/entities/characters_page.dart';
 import '../../domain/entities/character_filter_params.dart';
