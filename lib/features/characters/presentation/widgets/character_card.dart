@@ -200,7 +200,7 @@ class _CharacterCardState extends State<CharacterCard>
 class _StatusChip extends StatelessWidget {
   final String status;
 
-  const _StatusChip({super.key, required this.status});
+  const _StatusChip({required this.status});
 
   @override
   Widget build(BuildContext context) {

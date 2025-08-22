@@ -30,10 +30,8 @@ class AppTheme {
         onError: Colors.white,
         surface: AppColors.surface,          // Azul-acinzentado escuro
         onSurface: AppColors.textPrimary,    // Branco puro
-        surfaceVariant: AppColors.surfaceVariant,
+        surfaceContainerHighest: AppColors.surfaceVariant,
         onSurfaceVariant: AppColors.textSecondary,
-        background: AppColors.background,    // Azul espacial profundo
-        onBackground: AppColors.textPrimary, // Branco puro
         outline: AppColors.border,           // Bordas sutis
         outlineVariant: AppColors.divider,
       ),
