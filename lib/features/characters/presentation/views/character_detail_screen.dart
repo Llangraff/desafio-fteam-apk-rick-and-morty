@@ -73,7 +73,8 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RickMortyBackground(
+      backgroundColor: AppColors.background, // Fundo consistente da nova paleta
+      body: GradientBackground( // Será atualizado depois
         child: Consumer<CharacterDetailViewModel>(
           builder: (context, viewModel, child) {
             final state = viewModel.state;
@@ -186,11 +187,11 @@ class _HeroSectionSliver extends StatelessWidget {
       leading: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha:0.3),
+          color: AppColors.surface.withValues(alpha: 0.8), // Nova paleta
           borderRadius: BorderRadius.circular(12),
         ),
         child: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () {
             final navigationService = context.read<NavigationService>();
             navigationService.goBack();
@@ -204,7 +205,6 @@ class _HeroSectionSliver extends StatelessWidget {
             // Imagem do personagem
             CachedNetworkImage(
               imageUrl: character.image,
-              fit: BoxFit.cover,
               placeholder: (context, url) => Container(
                 color: AppColors.shimmer,
                 child: const Center(
@@ -214,7 +214,7 @@ class _HeroSectionSliver extends StatelessWidget {
                 ),
               ),
               errorWidget: (context, url, error) => Container(
-                color: AppColors.background,
+                color: AppColors.surface,
                 child: const Icon(
                   Icons.error_outline,
                   color: AppColors.error,
@@ -245,16 +245,16 @@ class _HeroSectionSliver extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Nome
+                  // Nome - Nova tipografia
                   Text(
                     character.name,
-                    style: const TextStyle(
+                    style: AppTypography.headline1.copyWith(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       shadows: [
                         Shadow(
-                          offset: Offset(0, 2),
+                          offset: const Offset(0, 2),
                           blurRadius: 4,
                           color: Colors.black54,
                         ),
@@ -285,15 +285,18 @@ class _StatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = AppColors.getStatusColor(status);
-    
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withValues(alpha:0.9),
+        color: color.withValues(alpha: 0.2), // Reduzido para melhor legibilidade
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: color.withValues(alpha: 0.5), // Borda para destaque
+          width: 1,
+        ),
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha:0.3),
+            color: color.withValues(alpha: 0.2),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -306,15 +309,15 @@ class _StatusBadge extends StatelessWidget {
             width: 8,
             height: 8,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.textPrimary, // Branco da nova paleta
               shape: BoxShape.circle,
             ),
           ),
           const SizedBox(width: 6),
           Text(
             status.toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white,
+            style: AppTypography.characterStatus.copyWith(
+              color: color, // Usa a cor do status para melhor contraste
               fontSize: 12,
               fontWeight: FontWeight.bold,
             ),

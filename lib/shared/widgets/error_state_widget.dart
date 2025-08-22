@@ -85,7 +85,7 @@ class _ErrorStateWidgetState extends State<ErrorStateWidget>
                   Text(
                     widget.title,
                     style: AppTypography.headline2.copyWith(
-                      color: AppColors.textOnDark,
+                      color: AppColors.textPrimary, // Nova paleta
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -97,7 +97,7 @@ class _ErrorStateWidgetState extends State<ErrorStateWidget>
                   Text(
                     widget.message,
                     style: AppTypography.body1.copyWith(
-                      color: AppColors.textSecondaryOnDark,
+                      color: AppColors.textSecondary, // Nova paleta
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -129,41 +129,23 @@ class _ErrorStateWidgetState extends State<ErrorStateWidget>
   }
 
   Widget _buildActionButton() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.primary,
-            AppColors.secondary,
-          ],
+    return ElevatedButton(
+      onPressed: widget.onAction,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary, // Verde Portal Gun
+        foregroundColor: Colors.black, // Preto para contraste
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        elevation: 4,
+        shadowColor: AppColors.primary.withValues(alpha: 0.25),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
         ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha:0.3),
-            blurRadius: 12,
-            offset: const Offset(0, 6),
-          ),
-        ],
       ),
-      child: ElevatedButton(
-        onPressed: widget.onAction,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: Text(
-          widget.actionText!,
-          style: AppTypography.button.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+      child: Text(
+        widget.actionText!,
+        style: AppTypography.button.copyWith(
+          color: Colors.black, // Preto para contraste no verde
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -186,8 +168,12 @@ class _GeneralErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha:0.1),
+        color: AppColors.error.withValues(alpha: 0.15), // Mais visível
         shape: BoxShape.circle,
+        border: Border.all(
+          color: AppColors.error.withValues(alpha: 0.3),
+          width: 2,
+        ),
       ),
       child: Icon(
         Icons.error_outline,
@@ -206,8 +192,12 @@ class _NetworkErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.warning.withValues(alpha:0.1),
+        color: AppColors.warning.withValues(alpha: 0.15),
         shape: BoxShape.circle,
+        border: Border.all(
+          color: AppColors.warning.withValues(alpha: 0.3),
+          width: 2,
+        ),
       ),
       child: Icon(
         Icons.wifi_off,
@@ -226,8 +216,12 @@ class _NotFoundErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.info.withValues(alpha:0.1),
+        color: AppColors.info.withValues(alpha: 0.15),
         shape: BoxShape.circle,
+        border: Border.all(
+          color: AppColors.info.withValues(alpha: 0.3),
+          width: 2,
+        ),
       ),
       child: Icon(
         Icons.search_off,
@@ -246,8 +240,12 @@ class _ServerErrorIllustration extends StatelessWidget {
       width: 120,
       height: 120,
       decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha:0.1),
+        color: AppColors.error.withValues(alpha: 0.15),
         shape: BoxShape.circle,
+        border: Border.all(
+          color: AppColors.error.withValues(alpha: 0.3),
+          width: 2,
+        ),
       ),
       child: Icon(
         Icons.cloud_off,

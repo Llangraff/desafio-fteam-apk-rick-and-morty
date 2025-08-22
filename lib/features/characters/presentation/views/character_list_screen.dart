@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../core/navigation/navigation_service.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../shared/widgets/gradient_background.dart';
@@ -11,6 +12,7 @@ import '../viewmodels/character_list_state.dart';
 import '../widgets/character_card.dart';
 
 /// Tela principal que exibe a lista de personagens com filtros
+/// Atualizada com nova paleta "Espaço Sideral"
 class CharacterListScreen extends StatefulWidget {
   const CharacterListScreen({super.key});
 
@@ -77,13 +79,12 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // Título
-          const Text(
+          // Título - Nova paleta "Espaço Sideral"
+          Text(
             'Personagens Rick and Morty',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            style: AppTypography.headline1.copyWith(
+              color: AppColors.textPrimary,
+              fontSize: 26,
             ),
           ),
           const SizedBox(height: 16),
@@ -91,16 +92,28 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
           // Linha com barra de busca e botão de filtros
           Row(
             children: [
-              // Barra de busca expandida
+              // Barra de busca - Nova estilização "Espaço Sideral"
               Expanded(
                 child: TextField(
                   controller: _searchController,
+                  style: AppTypography.inputText.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
                   decoration: InputDecoration(
                     hintText: 'Buscar personagens...',
-                    prefixIcon: const Icon(Icons.search),
+                    hintStyle: AppTypography.inputHint.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: AppColors.textSecondary,
+                    ),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
-                            icon: const Icon(Icons.clear),
+                            icon: Icon(
+                              Icons.clear,
+                              color: AppColors.textSecondary,
+                            ),
                             onPressed: () {
                               _searchController.clear();
                               context.read<CharacterListViewModel>().clearSearch();
@@ -109,9 +122,19 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                         : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: AppColors.border),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: AppColors.border),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: AppColors.borderFocus, width: 2),
                     ),
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha:0.9),
+                    fillColor: AppColors.surface,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   ),
                   onChanged: (query) {
                     context.read<CharacterListViewModel>().searchCharacters(query);
@@ -127,13 +150,13 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                   
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha:0.9),
+                      color: AppColors.surface,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: _isFiltersExpanded
-                            ? Colors.blue.withValues(alpha:0.5)
-                            : Colors.grey.withValues(alpha:0.3),
-                        width: 1,
+                            ? AppColors.primary.withValues(alpha: 0.6)
+                            : AppColors.border,
+                        width: 1.5,
                       ),
                     ),
                     child: Stack(
@@ -146,7 +169,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                           },
                           icon: Icon(
                             _isFiltersExpanded ? Icons.filter_alt : Icons.filter_alt_outlined,
-                            color: _isFiltersExpanded ? Colors.blue : Colors.grey[600],
+                            color: _isFiltersExpanded ? AppColors.primary : AppColors.textSecondary,
                             size: 24,
                           ),
                           tooltip: _isFiltersExpanded ? 'Ocultar Filtros' : 'Mostrar Filtros',
@@ -159,7 +182,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                             child: Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                color: Colors.red,
+                                color: AppColors.error,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               constraints: const BoxConstraints(
@@ -168,7 +191,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                               ),
                               child: Text(
                                 totalActiveFilters.toString(),
-                                style: const TextStyle(
+                                style: AppTypography.overline.copyWith(
                                   color: Colors.white,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
@@ -189,15 +212,15 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                 builder: (context, viewModel, child) {
                   return Container(
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF00ff88), Color(0xFF00cc66)],
+                      gradient: LinearGradient(
+                        colors: AppColors.accentGradient,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF00ff88).withValues(alpha:0.3),
+                          color: AppColors.primary.withValues(alpha: 0.25),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -227,12 +250,12 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                                   height: 24,
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
                                   ),
                                 )
                               : const Icon(
                                   Icons.auto_awesome,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   size: 24,
                                 ),
                         ),
@@ -312,7 +335,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       icon: const Icon(Icons.clear_all),
                       label: const Text('Limpar Filtros'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.withValues(alpha:0.8),
+                        backgroundColor: AppColors.error,
                         foregroundColor: Colors.white,
                       ),
                     ),
@@ -332,7 +355,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     if (state is CharacterListInitial || state is CharacterListLoading) {
       return const Center(
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
         ),
       );
     }
@@ -342,26 +365,23 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               Icons.error_outline,
               size: 64,
-              color: Colors.white70,
+              color: AppColors.textSecondary,
             ),
             const SizedBox(height: 16),
             Text(
               'Erro ao carregar personagens',
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              style: AppTypography.headline2.copyWith(
+                color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               state.message,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
+              style: AppTypography.body2.copyWith(
+                color: AppColors.textSecondary,
               ),
               textAlign: TextAlign.center,
             ),
@@ -372,7 +392,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
               label: const Text('Tentar Novamente'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
+                foregroundColor: Colors.black,
               ),
             ),
           ],
@@ -397,26 +417,23 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               Icons.search_off,
               size: 64,
-              color: Colors.white70,
+              color: AppColors.textSecondary,
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Nenhum personagem encontrado',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              style: AppTypography.headline2.copyWith(
+                color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Tente ajustar os filtros ou fazer uma nova busca.',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
+              style: AppTypography.body2.copyWith(
+                color: AppColors.textSecondary,
               ),
               textAlign: TextAlign.center,
             ),
@@ -449,11 +466,11 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
           
           return GridView.builder(
             controller: _scrollController,
-            padding: const EdgeInsets.all(12), // Espaçamento reduzido 16→12
+            padding: const EdgeInsets.all(12),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              mainAxisSpacing: 12, // Espaçamento reduzido 16→12
-              crossAxisSpacing: 12, // Espaçamento reduzido 16→12
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
               childAspectRatio: childAspectRatio,
             ),
             itemCount: characters.length + (showLoadingMore ? 1 : 0),
@@ -463,7 +480,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                   child: Padding(
                     padding: EdgeInsets.all(16),
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                     ),
                   ),
                 );

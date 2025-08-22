@@ -3,60 +3,77 @@ import 'app_colors.dart';
 import 'app_typography.dart';
 
 /// Tema principal da aplicação Rick and Morty
-/// 
-/// Define o ThemeData completo da aplicação integrando cores e tipografia
+///
+/// Tema "Espaço Sideral" - Escuro, elegante e com excelente legibilidade
+/// Otimizado para acessibilidade WCAG AA e experiência premium
 class AppTheme {
-  /// Tema claro da aplicação
-  static ThemeData get lightTheme {
+  /// Tema escuro "Espaço Sideral" da aplicação
+  static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
+      brightness: Brightness.dark,
       
-      // Cores principais
+      // === CORES PRINCIPAIS ===
       primarySwatch: AppColors.primarySwatch,
       primaryColor: AppColors.primary,
-      colorScheme: const ColorScheme.light(
-        primary: AppColors.primary,
-        secondary: AppColors.secondary,
-        surface: AppColors.surface,
-        error: AppColors.error,
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: AppColors.textOnDark,
+      
+      // ColorScheme otimizado para tema escuro
+      colorScheme: const ColorScheme.dark(
+        brightness: Brightness.dark,
+        primary: AppColors.primary,          // Verde Portal Gun
+        onPrimary: Colors.black,             // Texto sobre primary (preto para contraste)
+        secondary: AppColors.secondary,      // Roxo suave
+        onSecondary: Colors.white,           // Texto sobre secondary
+        tertiary: AppColors.info,            // Azul informativo
+        onTertiary: Colors.white,
+        error: AppColors.error,              // Vermelho vibrante
         onError: Colors.white,
+        surface: AppColors.surface,          // Azul-acinzentado escuro
+        onSurface: AppColors.textPrimary,    // Branco puro
+        surfaceVariant: AppColors.surfaceVariant,
+        onSurfaceVariant: AppColors.textSecondary,
+        background: AppColors.background,    // Azul espacial profundo
+        onBackground: AppColors.textPrimary, // Branco puro
+        outline: AppColors.border,           // Bordas sutis
+        outlineVariant: AppColors.divider,
       ),
       
-      // Fundo
+      // === BACKGROUND ===
       scaffoldBackgroundColor: AppColors.background,
       
-      // AppBar
+      // === APPBAR ===
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        elevation: 2,
+        backgroundColor: AppColors.background, // Fundo consistente
+        foregroundColor: AppColors.textPrimary,
+        elevation: 0, // Flat design moderno
+        shadowColor: Colors.transparent,
         centerTitle: true,
         titleTextStyle: AppTypography.appBarTitle,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        actionsIconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       
-      // Cards
-      // Cards
+      // === CARDS ===
       cardTheme: const CardThemeData(
-        color: AppColors.card,
-        elevation: 2,
+        color: AppColors.surface,            // Azul-acinzentado escuro
+        elevation: 4,                        // Elevação sutil
+        shadowColor: Colors.black26,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.all(Radius.circular(16)), // Mais arredondado
         ),
         margin: EdgeInsets.all(8),
       ),
-      // Botões
+      // === BOTÕES ===
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: AppColors.primary,    // Verde Portal Gun
+          foregroundColor: Colors.black,         // Preto para contraste no verde
           textStyle: AppTypography.button,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          elevation: 2,
+          shadowColor: AppColors.primary.withValues(alpha: 0.3),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12), // Mais arredondado
           ),
         ),
       ),
@@ -65,7 +82,10 @@ class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
           textStyle: AppTypography.button,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
       
@@ -74,85 +94,135 @@ class AppTheme {
           foregroundColor: AppColors.primary,
           textStyle: AppTypography.button,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          side: const BorderSide(color: AppColors.primary),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),
       
-      // Input Decoration
+      // Floating Action Button
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.black,
+        elevation: 6,
+        shape: CircleBorder(),
+      ),
+      
+      // === INPUT FIELDS ===
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surface,
+        labelStyle: AppTypography.inputText.copyWith(color: AppColors.textSecondary),
+        hintStyle: AppTypography.inputHint,
+        
+        // Bordas arredondadas e consistentes
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.border),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.border),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.borderFocus, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        labelStyle: AppTypography.body2,
-        hintStyle: AppTypography.body2.copyWith(color: AppColors.textHint),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
+        ),
+        
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        
+        // Ícones com cor apropriada
+        prefixIconColor: AppColors.textSecondary,
+        suffixIconColor: AppColors.textSecondary,
       ),
       
-      // Tipografia
+      // === TIPOGRAFIA ===
       textTheme: const TextTheme(
+        // Display styles
         displayLarge: AppTypography.headline1,
         displayMedium: AppTypography.headline2,
+        displaySmall: AppTypography.subtitle1,
+        
+        // Headline styles
         headlineLarge: AppTypography.headline1,
         headlineMedium: AppTypography.headline2,
+        headlineSmall: AppTypography.subtitle1,
+        
+        // Title styles
         titleLarge: AppTypography.subtitle1,
         titleMedium: AppTypography.subtitle2,
+        titleSmall: AppTypography.body1,
+        
+        // Body styles
         bodyLarge: AppTypography.body1,
         bodyMedium: AppTypography.body2,
-        labelLarge: AppTypography.button,
         bodySmall: AppTypography.caption,
+        
+        // Label styles
+        labelLarge: AppTypography.button,
+        labelMedium: AppTypography.badge,
         labelSmall: AppTypography.overline,
       ),
       
-      // Dividers
+      // === DIVISORES ===
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
         thickness: 1,
-        space: 1,
+        space: 16,
       ),
       
-      // Bottom Navigation Bar
+      // === BOTTOM NAVIGATION ===
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.surface,
         selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.textSecondaryOnDark,
+        unselectedItemColor: AppColors.textSecondary,
         type: BottomNavigationBarType.fixed,
+        elevation: 8,
       ),
       
-      // Progress Indicators
+      // === PROGRESS INDICATORS ===
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.primary,
+        linearTrackColor: AppColors.border,
+        circularTrackColor: AppColors.border,
       ),
       
-      // Snack Bar
+      // === SNACK BAR ===
       snackBarTheme: const SnackBarThemeData(
         backgroundColor: AppColors.surface,
-        contentTextStyle: TextStyle(color: AppColors.textOnDark),
+        contentTextStyle: AppTypography.body2,
         actionTextColor: AppColors.primary,
         behavior: SnackBarBehavior.floating,
+        elevation: 6,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
+      ),
+      
+      // === CHIPS ===
+      chipTheme: const ChipThemeData(
+        backgroundColor: AppColors.surface,
+        selectedColor: AppColors.primary,
+        labelStyle: AppTypography.badge,
+        secondaryLabelStyle: AppTypography.badge,
+        brightness: Brightness.dark,
+        elevation: 2,
+        pressElevation: 4,
       ),
     );
   }
+  
+  /// Getter para manter compatibilidade com código existente
+  static ThemeData get lightTheme => darkTheme;
 
   // Construtor privado para evitar instanciação
   AppTheme._();

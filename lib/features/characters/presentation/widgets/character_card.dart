@@ -6,7 +6,8 @@ import '../../domain/entities/character.dart';
 
 /// Widget que representa um card de personagem na lista
 ///
-/// Exibe a imagem, nome e status do personagem de forma compacta
+/// Redesenhado com nova paleta "Espaço Sideral" para máxima legibilidade
+/// e experiência visual premium
 class CharacterCard extends StatefulWidget {
   final Character character;
   final VoidCallback? onTap;
@@ -31,21 +32,21 @@ class _CharacterCardState extends State<CharacterCard>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 200), // Animação mais suave
       vsync: this,
     );
 
     _scaleAnimation = Tween<double>(
       begin: 1.0,
-      end: 0.95,
+      end: 0.96, // Escala mais sutil
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
 
     _elevationAnimation = Tween<double>(
-      begin: 8.0,
-      end: 12.0,
+      begin: 4.0, // Elevação inicial reduzida
+      end: 8.0,   // Elevação máxima reduzida
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
@@ -79,9 +80,14 @@ class _CharacterCardState extends State<CharacterCard>
           scale: _scaleAnimation.value,
           child: Card(
             elevation: _elevationAnimation.value,
-            shadowColor: AppColors.primary.withValues(alpha:0.2),
+            shadowColor: AppColors.primary.withValues(alpha: 0.15), // Sombra mais sutil
+            color: AppColors.surface, // Nova cor da paleta "Espaço Sideral"
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
+              side: BorderSide(
+                color: AppColors.border.withValues(alpha: 0.3), // Borda sutil
+                width: 0.5,
+              ),
             ),
             child: InkWell(
               onTap: widget.onTap,
@@ -89,8 +95,8 @@ class _CharacterCardState extends State<CharacterCard>
               onTapUp: _onTapUp,
               onTapCancel: _onTapCancel,
               borderRadius: BorderRadius.circular(16),
-              splashColor: AppColors.primary.withValues(alpha:0.1),
-              highlightColor: AppColors.primary.withValues(alpha:0.05),
+              splashColor: AppColors.primary.withValues(alpha: 0.08), // Splash mais sutil
+              highlightColor: AppColors.primary.withValues(alpha: 0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -115,14 +121,14 @@ class _CharacterCardState extends State<CharacterCard>
                           ),
                         ),
                         errorWidget: (context, url, error) => Container(
-                          color: AppColors.background,
+                          color: AppColors.surface,
                           child: const Icon(
                             Icons.error_outline,
                             color: AppColors.error,
-                            size: 48,
+                            size: 40, // Tamanho reduzido para melhor proporção
                           ),
                         ),
-                        memCacheWidth: 300, // Otimização de memória
+                        memCacheWidth: 300, // Otimização mantida
                         memCacheHeight: 300,
                       ),
                     ),
@@ -132,35 +138,42 @@ class _CharacterCardState extends State<CharacterCard>
                   Expanded(
                     flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.all(8), // Padding reduzido 10→8px para compactação
+                      padding: const EdgeInsets.all(12), // Padding aumentado para melhor respiração
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // Nome do personagem
+                          // Nome do personagem - MELHOR LEGIBILIDADE
                           Flexible(
                             child: Text(
                               widget.character.name,
-                              style: AppTypography.characterName.copyWith(fontSize: 13), // Fonte reduzida 14→13px
+                              style: AppTypography.characterName.copyWith(
+                                color: AppColors.textPrimary, // Branco puro
+                                fontSize: 14, // Fonte restaurada para melhor legibilidade
+                                fontWeight: FontWeight.w700, // Mais bold
+                              ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
 
-                          const SizedBox(height: 4), // Espaçamento reduzido 6→4px
+                          const SizedBox(height: 6), // Espaçamento aumentado
 
-                          // Status com chip colorido
+                          // Status e espécie com melhor layout
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Flexible(
-                                child: _StatusChip(status: widget.character.status),
-                              ),
-                              const SizedBox(width: 4), // Espaçamento reduzido 6→4px
+                              // Status chip redesenhado
+                              _StatusChip(status: widget.character.status),
+                              const SizedBox(width: 8), // Espaçamento aumentado
+                              // Espécie com melhor contraste
                               Expanded(
                                 child: Text(
                                   widget.character.species,
-                                  style: AppTypography.characterSpecies.copyWith(fontSize: 11), // Fonte reduzida 12→11px
+                                  style: AppTypography.characterSpecies.copyWith(
+                                    color: AppColors.textSecondary, // Cinza claro da nova paleta
+                                    fontSize: 12, // Fonte restaurada
+                                  ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -181,39 +194,64 @@ class _CharacterCardState extends State<CharacterCard>
   }
 }
 
-/// Widget que exibe o status do personagem com cor semântica
+/// Widget que exibe o status do personagem com design premium
+/// 
+/// Redesenhado com a nova paleta "Espaço Sideral" para máxima legibilidade
 class _StatusChip extends StatelessWidget {
   final String status;
 
-  const _StatusChip({required this.status});
+  const _StatusChip({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {
     final statusColor = AppColors.getStatusColor(status);
 
     return Container(
-      constraints: const BoxConstraints(maxWidth: 75), // Largura máxima reduzida 80→75px
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3), // Padding reduzido
+      constraints: const BoxConstraints(maxWidth: 80), // Largura otimizada
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Padding aumentado
       decoration: BoxDecoration(
-        color: statusColor.withValues(alpha:0.15),
-        borderRadius: BorderRadius.circular(10), // Borda reduzida 12→10px
-        border: Border.all(color: statusColor.withValues(alpha:0.3), width: 1),
+        // Background com opacity adequada para legibilidade
+        color: statusColor.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: statusColor.withValues(alpha: 0.4), // Borda mais visível
+          width: 1,
+        ),
         boxShadow: [
           BoxShadow(
-            color: statusColor.withValues(alpha:0.15),
-            blurRadius: 2, // Blur reduzido 3→2px
+            color: statusColor.withValues(alpha: 0.2),
+            blurRadius: 3,
             offset: const Offset(0, 1),
           ),
         ],
       ),
-      child: Text(
-        status,
-        style: AppTypography.characterStatus.copyWith(
-          color: statusColor,
-          fontSize: 11, // Fonte reduzida 12→11px
-        ),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Indicador circular do status
+          Container(
+            width: 6,
+            height: 6,
+            decoration: BoxDecoration(
+              color: statusColor,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 4),
+          // Texto do status
+          Flexible(
+            child: Text(
+              status,
+              style: AppTypography.characterStatus.copyWith(
+                color: statusColor,
+                fontSize: 11,
+                fontWeight: FontWeight.w600, // Mais bold para legibilidade
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

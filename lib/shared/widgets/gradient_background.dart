@@ -44,7 +44,7 @@ class GradientBackground extends StatelessWidget {
   }
 
   List<Color> _getDefaultGradient() {
-    return AppColors.cosmicGradient;
+    return AppColors.cosmicGradient; // Agora usa gradiente mais sutil da nova paleta
   }
 }
 
@@ -118,6 +118,7 @@ class _AnimatedGradientBackgroundState extends State<AnimatedGradientBackground>
 }
 
 /// Background Rick and Morty temático espacial
+/// Background Rick and Morty "Espaço Sideral" - Simplificado e elegante
 class RickMortyBackground extends StatelessWidget {
   final Widget child;
   final bool useAppBar;
@@ -131,19 +132,12 @@ class RickMortyBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: AppColors.cosmicGradient,
-          stops: const [0.0, 0.5, 1.0],
-        ),
-      ),
+      // Fundo sólido da nova paleta - mais limpo e profissional
+      color: AppColors.background,
       child: child,
     );
   }
 }
-
 /// Background para cards com efeito glassmorphism espacial
 class GlassmorphismCard extends StatelessWidget {
   final Widget child;

@@ -92,10 +92,10 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              color: AppColors.surface.withValues(alpha:0.8),
+              color: AppColors.surface, // Cor sólida para melhor consistência
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.border.withValues(alpha:0.5),
+                color: AppColors.border,
                 width: 1,
               ),
             ),
@@ -103,14 +103,14 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
               children: [
                 Icon(
                   _isExpanded ? Icons.expand_less : Icons.expand_more,
-                  color: AppColors.primary,
+                  color: AppColors.primary, // Verde Portal Gun
                   size: 20,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   widget.title,
                   style: AppTypography.body1.copyWith(
-                    color: AppColors.textOnDark,
+                    color: AppColors.textPrimary, // Branco puro da nova paleta
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -119,13 +119,13 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppColors.primary,
+                      color: AppColors.primary, // Verde Portal Gun
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       '${widget.selectedFilters.length}',
                       style: AppTypography.caption.copyWith(
-                        color: Colors.white,
+                        color: Colors.black, // Preto para contraste no verde
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -143,10 +143,10 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
             child: Container(
               margin: const EdgeInsets.only(top: 8),
               decoration: BoxDecoration(
-                color: AppColors.surface.withValues(alpha:0.6),
+                color: AppColors.surface, // Cor sólida consistente
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.border.withValues(alpha:0.3),
+                  color: AppColors.border,
                   width: 1,
                 ),
               ),
@@ -206,9 +206,9 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
         label: Text(
           _truncateText(filter, maxChipWidth, context),
           style: AppTypography.body2.copyWith(
-            color: isSelected ? Colors.white : AppColors.textOnDark,
+            color: isSelected ? Colors.black : AppColors.textPrimary, // Preto no verde, branco no escuro
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-            fontSize: width < 400 ? 12.0 : 14.0, // Fonte menor em telas pequenas
+            fontSize: width < 400 ? 12.0 : 14.0,
           ),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
@@ -216,20 +216,20 @@ class _FilterChipsWidgetState extends State<FilterChipsWidget>
         selected: isSelected,
         onSelected: (selected) => _onChipSelected(filter, selected),
         backgroundColor: AppColors.surface,
-        selectedColor: AppColors.primary,
-        checkmarkColor: Colors.white,
+        selectedColor: AppColors.primary, // Verde Portal Gun
+        checkmarkColor: Colors.black, // Preto para contraste no verde
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
             color: isSelected
                 ? AppColors.primary
-                : AppColors.border.withValues(alpha:0.5),
+                : AppColors.border,
             width: 1,
           ),
         ),
         elevation: isSelected ? 4 : 1,
         shadowColor: isSelected
-            ? AppColors.primary.withValues(alpha:0.3)
+            ? AppColors.primary.withValues(alpha: 0.25)
             : Colors.transparent,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,
